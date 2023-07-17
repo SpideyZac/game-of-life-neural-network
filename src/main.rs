@@ -3,14 +3,14 @@ pub mod genetic;
 pub mod population;
 pub mod train;
 
-use crate::train::train;
-use crate::train::TrainData;
-use crate::train::Point;
 use crate::game::Cell;
 use crate::game::Game;
+use crate::train::train;
+use crate::train::Point;
+use crate::train::TrainData;
 
-use std::{thread, time::Duration};
 use std::time::Instant;
+use std::{thread, time::Duration};
 
 fn main() {
     let now = Instant::now();
@@ -38,26 +38,9 @@ fn main() {
                 outputs: vec![0],
             },
         ],
-        vec![
-            Point {
-                row: 3,
-                col: 0,
-            },
-            Point {
-                row: 5,
-                col: 0,
-            },
-        ],
-        vec![
-            Point {
-                row: 4,
-                col: 9,
-            },
-        ],
-        Point {
-            row: 4,
-            col: 4,
-        },
+        vec![Point { row: 3, col: 0 }, Point { row: 5, col: 0 }],
+        vec![Point { row: 4, col: 9 }],
+        Point { row: 4, col: 4 },
     );
 
     println!("Training Elapsed: {:.2?}", now.elapsed());
@@ -80,7 +63,9 @@ fn main() {
                 inputs: vec![1, 1],
                 outputs: vec![0],
             },
-        ].iter() {
+        ]
+        .iter()
+        {
             let mut game = Game {
                 board: best.cells.clone(),
                 width: 10,
@@ -88,36 +73,17 @@ fn main() {
             };
 
             let mut input_idxs: Vec<usize> = vec![];
-            for input in vec![
-                Point {
-                    row: 3,
-                    col: 0,
-                },
-                Point {
-                    row: 5,
-                    col: 0,
-                },
-            ].iter() {
+            for input in vec![Point { row: 3, col: 0 }, Point { row: 5, col: 0 }].iter() {
                 input_idxs.push(game.get_index(input.row, input.col));
             }
 
             let mut output_idxs: Vec<usize> = vec![];
-            for output in vec![
-                Point {
-                    row: 4,
-                    col: 9,
-                },
-            ].iter() {
+            for output in vec![Point { row: 4, col: 9 }].iter() {
                 output_idxs.push(game.get_index(output.row, output.col));
             }
 
-            let check_point_idx = game.get_index(Point {
-                row: 4,
-                col: 4,
-            }.row, Point {
-                row: 4,
-                col: 4,
-            }.col);
+            let check_point_idx =
+                game.get_index(Point { row: 4, col: 4 }.row, Point { row: 4, col: 4 }.col);
 
             for (i, input_data) in training_data_point.inputs.iter().enumerate() {
                 match input_data {

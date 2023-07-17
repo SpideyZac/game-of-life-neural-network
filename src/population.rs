@@ -1,5 +1,5 @@
-use crate::genetic::GeneticAlgorithm;
 use crate::game::random_cells;
+use crate::genetic::GeneticAlgorithm;
 
 pub struct Population {
     pub size: u32,

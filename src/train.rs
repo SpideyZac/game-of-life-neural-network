@@ -48,7 +48,8 @@ pub fn train(
         for ga in population.players.iter() {
             range.shuffle(training_data);
 
-            let mut reward: i32 = (width as i32) * (height as i32) - (ga.cells.iter().filter(|x| **x == Cell::Alive).count() as i32);
+            let mut reward: i32 = (width as i32) * (height as i32)
+                - (ga.cells.iter().filter(|x| **x == Cell::Alive).count() as i32);
 
             for training_data_point in training_data.iter() {
                 let mut game = Game {
