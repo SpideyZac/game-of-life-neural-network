@@ -16,7 +16,7 @@ fn main() {
     let now = Instant::now();
     let best = train(
         100,
-        100,
+        1000,
         100,
         10,
         10,

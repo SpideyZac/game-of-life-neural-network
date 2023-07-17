@@ -13,7 +13,7 @@ The neural net has 3 defined parts:
 
 - The Input Points which are the cells where inputs will be entered
 - The Output Points which are the cells where the outputs will be read
-- The Check Point which is the cell that when alivve finalizes the output
+- The Check Point which is the cell that when alive finalizes the output
 
 # How to run
 ```
