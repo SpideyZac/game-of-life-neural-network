@@ -10,8 +10,10 @@ use crate::game::Cell;
 use crate::game::Game;
 
 use std::{thread, time::Duration};
+use std::time::Instant;
 
 fn main() {
+    let now = Instant::now();
     let best = train(
         100,
         100,
@@ -57,6 +59,8 @@ fn main() {
             col: 4,
         },
     );
+
+    println!("Training Elapsed: {:.2?}", now.elapsed());
 
     loop {
         for training_data_point in &mut vec![
